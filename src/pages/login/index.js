@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {Title, Input, Button} from '../../components/atoms'
-import {Container, Footer} from './styled'
+import {Container, Footer, Password} from './styled'
 
 import { useHistory } from 'react-router-dom'
 import auth from '../../auth'
@@ -41,7 +41,7 @@ const Login = () => {
       placeholder='User' 
       value={ userName }
       onChange={ setUser }/>
-    <Input 
+    <Password
       placeholder='Password'
       value={ passwd }
       onChange={ setPassword }/>
