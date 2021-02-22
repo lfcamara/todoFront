@@ -1,24 +1,24 @@
 import React from 'react'
-import { Button } from '../../atoms'
-import { TaskComponent, Body, DivRight } from './styled'
+import { ButtonIcon, Title } from '../../atoms'
+import { TaskComponent, Body, DivRight, Description } from './styled'
 import {CheckOutlined, EditOutlined, DeleteOutlined} from '@ant-design/icons'
+import { colors } from '../../../colors'
 
-const Task = ({description, ...props}) => {
+const Task = ({description, finishDate, ...props}) => {
+  const color = colors.white
+  const date = finishDate ? `${finishDate.getDate()}/${finishDate.getMonth()}/${finishDate.getFullYear()}` : ''
   return <TaskComponent 
     hoverable
-    color={{
-      primary: '#311D3F',
-      secundary: '#EEEEEE'
-    }}
+    color={ colors.blue }
     {...props}>
     <Body>
-      { description }
+      <Description>{ description }</Description>
+      <Title level={5}>{ date }</Title>
       <DivRight>
-        <Button icon={<CheckOutlined />}/>
-        <Button icon={<EditOutlined />}/>
-        <Button icon={<DeleteOutlined />}/>
+        <ButtonIcon color={ color } icon={<CheckOutlined />}/>
+        <ButtonIcon color={ color } icon={<EditOutlined />}/>
+        <ButtonIcon color={ color } icon={<DeleteOutlined />}/>
     </DivRight>
-    
     </Body>
       
   </TaskComponent> 

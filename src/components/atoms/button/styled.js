@@ -3,22 +3,24 @@ import { Button } from 'antd';
 import { colors } from '../../../colors';
 
 export const ButtonComponent = styled(Button)`
-    background-color: ${ colors.gray };
-    color: ${ colors.black };
+    background-color: ${({color}) => color ? color : colors.blue };
+    color: ${ colors.white };
     cursor: pointer;
-    width: ${({width}) => width ? (width+'% !important') : 'none'} ;
+    width: 10vw;
+    height: 3.5vw;
+    border:none;
     &:hover {
-        background-color: ${ colors.gray };    
+        background-color: ${ ({color})=> color ? color : colors.blue };    
         opacity: 0.8;
-        color: ${ colors.gray };
+        color: ${ colors.white };
     }
     &:focus {
-        background-color: ${ colors.gray };    
+        background-color: ${ ({color}) => color ? color : colors.blue };    
         opacity: 0.8;
-        color: ${ colors.white } ;      
+        color: ${ colors.white } ;    
     }
     &:click {
-        color: ${ colors.gray };    
+        color: ${ colors.white };  
     }
 `;
 

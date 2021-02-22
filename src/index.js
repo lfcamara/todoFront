@@ -1,12 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './page/App';
+import App from './App';
+import { Login, Dashboard } from './pages'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom"
+import auth from './auth'
 import reportWebVitals from './reportWebVitals';
+
+const ProtectedRoute = ({...props}) => {
+  return <Route
+    {...props}
+    render={() => {
+      if(auth.isAuthenticated())
+        return <Dashboard/>        
+      else 
+        return <Redirect to='/'/>
+    }}
+  />
+}
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+      <Route 
+        exact 
+        path='/'
+        render={() => <Login/>}/>
+      
+      <ProtectedRoute 
+        exact 
+        path='/dashboard' />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 

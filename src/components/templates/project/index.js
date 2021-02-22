@@ -1,24 +1,34 @@
 import React from 'react'
-import {Button, Title} from '../../atoms'
+import {ButtonIcon, Title} from '../../atoms'
 import {TaskList} from '../../organisms'
-import { Card } from 'antd';
-import { Header, HeaderRight } from './styled'
+import { CardComponent, Header,Container, HeaderRight } from './styled'
 import { EditOutlined, DeleteOutlined} from '@ant-design/icons'
+import {colors} from '../../../colors'
+import projectService from '../../../services/projects'
 
-const Project = ({...props}) => {
-  const title = 'meu projeto'
+const Project = ({project, remove, ...props}) => {
+  const del = async () => {
+    await projectService.delete(project._id);
+    remove();
+  }
   const header = <Header>
-    <Title level={1}>{title}</Title>
-    <HeaderRight>
-      <Button icon={<EditOutlined />}/>
-      <Button icon={<DeleteOutlined />}/>
-    </HeaderRight>
-  </Header>
+                  <HeaderRight>
+                    <ButtonIcon color={colors.blue} icon={<EditOutlined />}/>
+                    <ButtonIcon 
+                      color={colors.blue}
+                      icon={<DeleteOutlined />}
+                      onClick={() => del()}
+                    />
+                  </HeaderRight>
+                  <Container>
+                    <Title level={1}>{project.title}</Title>
+                  </Container>
+                </Header>
 
-  return <Card>
+  return <CardComponent>
     {header}
-    <TaskList/>
-  </Card>
+    <TaskList tasks={project.tasks}/>
+  </CardComponent>
 }
 
 export default Project

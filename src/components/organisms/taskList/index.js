@@ -3,19 +3,17 @@ import {Title} from '../../atoms'
 import {Task, InputTask} from '../../molecules'
 import { List } from 'antd';
 
-const TaskList = ({...props}) => {
-  const tasks = ["Description 01", "Description 02", "Description 03"]
+const TaskList = ({tasks, ...props}) => {
+  const taskL = tasks.map(task => {
+      return <Task description={task.description} finishDate={task.finishedAt ? task.finishedAt : undefined}/>
+  })
   return <List
     header={<Title level={2}>Task List</Title>}
-    footer={<InputTask/>}
     bordered
-    dataSource={tasks}
-    renderItem={itemDescription => (
-      <List.Item>
-        <Task description={itemDescription}/>
-      </List.Item>
-    )}
-  />
+  > 
+  {taskL}
+    <InputTask/>
+  </List>
 }
 
 export default TaskList

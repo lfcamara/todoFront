@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 import { Card } from 'antd'
+import { Typography } from 'antd';
+import { colors } from '../../../colors';
 
+const { Paragraph  } = Typography;
 export const TaskComponent = styled(Card)`
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(240deg, ${ ({color}) => color.primary }, ${ ({color}) => color.secundary });
+  margin: 1vw;
+  border: solid 0.5px ${ colors.gray };
 `;
 export const Body = styled.div`
   display: flex;
@@ -17,3 +21,5 @@ export const DivRight = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const Description  = styled(Paragraph )``
